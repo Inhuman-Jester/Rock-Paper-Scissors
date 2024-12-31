@@ -5,45 +5,71 @@ function getCompChoice(){
     if(a==1)    return "paper";
 }
 
+//select buttons
+// let rock= document.querySelector("#btn1")
+
 function getHumanChoice(){
-    let a=prompt("What is your move? \n");
-    return a.toLowerCase();
+    let choice=prompt("Enter you choice")
+    return choice.toLowerCase()
 }
 
+
+//declare the scoring variables
 let humanScore=0
 let compScore=0
 
-function playRound(n){
-    if(n==0)    return;
+//function on how the round shall be played using recursion
+function playRound(){
+    let numOfRounds=0;
+    while(humanScore!=5 && compScore!=5){
+        let humanChoice=getHumanChoice();
+        let compChoice=getCompChoice();
+        numOfRounds++;
 
-    let human=getHumanChoice();
-    let comp=getCompChoice();
+        check(humanChoice, compChoice);
+        
+        console.log(`Computer: ${compScore}     Human:${humanScore}`)
+    }
+}
 
-    console.log(`Comp move ${comp}\n`);
-    
-
-    check(human, comp);
-    console.log(`Score: Comp-${compScore}   Human-${humanScore}`)
-
-    playRound(n-1);
+//function which checks who wins the point
+function check(humanChoice, compChoice){
+    if(humanChoice=="rock"){
+        if(compChoice=="scissors"){
+            humanScore++;
+            console.log("Human Wins this round")
+        }    
+        else if(compChoice=="paper"){
+            compScore++;
+            console.log("Computer wins this round")
+        }   
+    }
+    else if(humanChoice=="paper"){
+        if(compChoice=="scissors"){
+            compScore++;
+            console.log("Computer wins this round")
+        }    
+        else if(compChoice=="rock"){
+            console.log("Human Wins this round")
+            humanScore++;
+        }    
+    }
+    else if(humanChoice=="scissors"){
+        if(compChoice=="paper"){
+            console.log("Human Wins this round")
+            humanScore++;
+        }
+        else if(compChoice=="rock"){
+            compScore++;
+            console.log("Computer wins this round")
+        }
+    }
     return;
 }
 
-function check(human, comp){
-    if(human=="rock"){
-        if(comp=="scissors")    humanScore++;
-        else if(comp=="paper")   compScore++;
-    }
-    else if(human=="paper"){
-        if(comp=="scissors")    compScore++;
-        else if(comp=="rock")    humanScore++;
-    }
-    else if(human=="scissors"){
-        if(comp=="paper")   humanScore++;
-        else if(comp=="rock")    compScore++;
-    }
-}
+//triggering the funcction
+playRound();
 
-playRound(5);
-if(compScore>humanScore)    console.log("Comp Wins!");
-else    console.log("Human Wins");
+// final output
+if(compScore>humanScore)    console.log("Computer Wins!");
+else    console.log("Human Wins!");
