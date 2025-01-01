@@ -10,8 +10,9 @@ let roundNumber=0
 let h=document.querySelector("#btn");
 
 h.addEventListener("click", (event)=>{
-    if(event.target.tagName==="BUTTON"){
-        let humanChoice=event.target.id;
+    let button=event.target.closest("button")
+    if(button){
+        let humanChoice=button.id;
         roundNumber++;
         playRound(humanChoice);
     }
@@ -38,14 +39,14 @@ function playRound(humanChoice){
         humanScore=0;
         compScore=0;
         roundNumber=0;
-        // displayScore("Computer Wins!");
+        displayWinner("Computer Wins!");
     }  
     else if(compScore<humanScore&&humanScore==5){
         console.log("Human Wins!");
         humanScore=0;
         compScore=0;
         roundNumber=0;
-        // displayScore("Human Wins!");
+        displayWinner("Human Wins!");
     }    
 }
 
@@ -86,8 +87,13 @@ function check(humanChoice, compChoice){
 
 //function to display stuff on the screen 
 function displayScore(string){
-    let addition=document.createElement("h2");
-    addition.innerText=string;
-    // addition.style.alignSelf="center";
-    h.appendChild(addition);
+    let score=document.querySelector("#score")
+    score.innerText=string;
+    let win=document.querySelector("#win")
+    win.innerText="Game Begins!";
+}
+
+function displayWinner(string){
+    let win=document.querySelector("#win")
+    win.innerText=string;
 }
