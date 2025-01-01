@@ -5,16 +5,6 @@ function getCompChoice(){
     if(a==1)    return "paper";
 }
 
-<<<<<<< HEAD
-//select buttons
-// let rock= document.querySelector("#btn1")
-
-function getHumanChoice(){
-    let choice=prompt("Enter you choice")
-    return choice.toLowerCase()
-}
-
-=======
 let roundNumber=0
 
 let h=document.querySelector("#btn");
@@ -27,26 +17,12 @@ h.addEventListener("click", (event)=>{
         playRound(humanChoice);
     }
 })
->>>>>>> rps-ui
 
 //declare the scoring variables
 let humanScore=0
 let compScore=0
 
 //function on how the round shall be played using recursion
-<<<<<<< HEAD
-function playRound(){
-    let numOfRounds=0;
-    while(humanScore!=5 && compScore!=5){
-        let humanChoice=getHumanChoice();
-        let compChoice=getCompChoice();
-        numOfRounds++;
-
-        check(humanChoice, compChoice);
-        
-        console.log(`Computer: ${compScore}     Human:${humanScore}`)
-    }
-=======
 function playRound(humanChoice){
     
     let compChoice=getCompChoice();
@@ -72,7 +48,6 @@ function playRound(humanChoice){
         roundNumber=0;
         displayWinner("Human Wins!");
     }    
->>>>>>> rps-ui
 }
 
 //function which checks who wins the point
@@ -110,14 +85,6 @@ function check(humanChoice, compChoice){
     return;
 }
 
-<<<<<<< HEAD
-//triggering the funcction
-playRound();
-
-// final output
-if(compScore>humanScore)    console.log("Computer Wins!");
-else    console.log("Human Wins!");
-=======
 //function to display stuff on the screen 
 function displayScore(string){
     let score=document.querySelector("#score")
@@ -130,4 +97,3 @@ function displayWinner(string){
     let win=document.querySelector("#win")
     win.innerText=string;
 }
->>>>>>> rps-ui
